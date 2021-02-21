@@ -1,3 +1,4 @@
+import { FastifyReply } from "fastify";
 import faunadb from "faunadb";
 import { FaunaError } from "../__errors/FaunaError";
 
@@ -19,18 +20,16 @@ export const createUser = {
   },
 
   //TODO: delete any
-  async handler(request: any, reply: any) {
-    const { username, password } = request.body;
-
+  async handler(request: any, reply: FastifyReply): Promise<void> {
     if (process.env.FAUNA_SERVER_SECRET === undefined) {
       console.error(`required env variable is not set: FAUNA_SERVER_SECRET`);
       process.exit(1);
     }
-
     const client = new faunadb.Client({
       secret: process.env.FAUNA_SERVER_SECRET,
     });
 
+    const { username, password } = request.body;
     try {
       const result = await client.query(
         Create(Collection("Users"), {
