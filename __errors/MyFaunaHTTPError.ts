@@ -1,15 +1,16 @@
-export class FaunaError extends Error {
+import { errors } from "faunadb";
+
+export class MyFaunaError extends Error {
   code: string;
   statusCode: number;
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  constructor(error: { requestResult: { responseContent: { errors: any } } }) {
+  constructor(error: errors.FaunaHTTPError) {
     super();
 
     const errors = error.requestResult.responseContent.errors;
 
-    this.code = errors[0].code;
-    this.message = errors[0].description;
+    this.code = errors[0] === undefined ? "" : errors[0].code;
+    this.message = errors[0] === undefined ? "" : errors[0].description;
     this.statusCode = 500;
 
     if (this.code === "instance not unique") {

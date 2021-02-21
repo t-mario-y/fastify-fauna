@@ -1,7 +1,7 @@
 import { FastifyReply } from "fastify";
 import faunadb from "faunadb";
 import { FaunaQueryResult } from "../types/FaunaQueryResult";
-import { FaunaError } from "../__errors/FaunaError";
+import { MyFaunaError } from "../__errors/MyFaunaHTTPError";
 
 const { Login, Match, Index } = faunadb.query;
 
@@ -33,7 +33,7 @@ export const login = {
       )) as FaunaQueryResult;
       reply.send({ secret: result.secret });
     } catch (error) {
-      throw new FaunaError(error);
+      throw new MyFaunaError(error);
     }
   },
 };

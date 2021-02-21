@@ -1,6 +1,6 @@
 import { FastifyReply } from "fastify";
 import faunadb from "faunadb";
-import { FaunaError } from "../__errors/FaunaError";
+import { MyFaunaError } from "../__errors/MyFaunaHTTPError";
 
 const { Create, Collection } = faunadb.query;
 
@@ -40,7 +40,7 @@ export const createUser = {
 
       reply.send(result);
     } catch (error) {
-      throw new FaunaError(error);
+      throw new MyFaunaError(error);
     }
   },
 };
