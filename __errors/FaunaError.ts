@@ -1,4 +1,4 @@
-export default class FaunaError extends Error {
+export class FaunaError extends Error {
   code: string;
   statusCode: number;
 

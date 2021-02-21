@@ -1,5 +1,6 @@
 import fastify from "fastify";
-import createUser from "./routes/createUser";
+import { createUser } from "./routes/createUser";
+import { login } from "./routes/login";
 
 const server = fastify({ logger: true });
 
@@ -8,6 +9,13 @@ server.route({
   url: "/users",
   schema: createUser.schema,
   handler: createUser.handler,
+});
+
+server.route({
+  method: "POST",
+  url: "/login",
+  schema: login.schema,
+  handler: login.handler,
 });
 
 server.listen(3000, (err, address) => {
