@@ -1,5 +1,6 @@
 import { FastifyReply } from "fastify";
 import faunadb from "faunadb";
+import { createFaunadbClient } from "../faunadbClientFactory";
 import { FaunaQueryResult } from "../types/FaunaQueryResult";
 import { MyFaunaError } from "../__errors/MyFaunaHTTPError";
 
@@ -18,13 +19,7 @@ export const login = {
   },
 
   async handler(request: any, reply: FastifyReply): Promise<void> {
-    if (process.env.FAUNA_SERVER_SECRET === undefined) {
-      console.error(`required env variable is not set: FAUNA_SERVER_SECRET`);
-      process.exit(1);
-    }
-    const client = new faunadb.Client({
-      secret: process.env.FAUNA_SERVER_SECRET,
-    });
+    const client = createFaunadbClient();
 
     const { username, password } = request.body;
     try {
