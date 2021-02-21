@@ -2,6 +2,9 @@
   "name": "fastify-fauna",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": ">=12.13.1"
+  },
   "scripts": {
     "start": "node -r dotenv/config ./dist/index.js",
     "build": "tsc -p ./tsconfig.json",
