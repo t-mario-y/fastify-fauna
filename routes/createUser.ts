@@ -1,29 +1,22 @@
-import { FastifyReply, RouteOptions } from "fastify";
+import { FastifyReply, FastifyRequest, RouteOptions } from "fastify";
 import faunadb from "faunadb";
 import { createFaunadbClient } from "../faunadbClientFactory";
 import { MyFaunaError } from "../__errors/MyFaunaHTTPError";
-
+import createUserRequestBody from "../schemas/createUserRequestBody.json";
 const { Create, Collection } = faunadb.query;
 
 export const createUser: RouteOptions = {
   method: "POST",
   url: "/users",
   schema: {
-    body: {
-      type: "object",
-      required: ["username", "password"],
-      properties: {
-        username: { type: "string" },
-        password: {
-          type: "string",
-          minLength: 10,
-        },
-      },
-    },
+    body: createUserRequestBody,
   },
 
   //TODO: delete any
-  async handler(request: any, reply: FastifyReply): Promise<void> {
+  async handler(
+    request: FastifyRequest<any>,
+    reply: FastifyReply
+  ): Promise<void> {
     const client = createFaunadbClient();
     const { username, password } = request.body;
     try {
