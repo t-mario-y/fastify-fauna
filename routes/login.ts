@@ -1,4 +1,4 @@
-import { FastifyReply } from "fastify";
+import { FastifyReply, RouteOptions } from "fastify";
 import faunadb from "faunadb";
 import { createFaunadbClient } from "../faunadbClientFactory";
 import { FaunaQueryResult } from "../types/FaunaQueryResult";
@@ -6,7 +6,9 @@ import { MyFaunaError } from "../__errors/MyFaunaHTTPError";
 
 const { Login, Match, Index } = faunadb.query;
 
-export const login = {
+export const login: RouteOptions = {
+  method: "POST",
+  url: "/login",
   schema: {
     body: {
       type: "object",
