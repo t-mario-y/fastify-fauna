@@ -1,6 +1,6 @@
 import fastify from "fastify";
-import { createUser } from "./routes/createUser";
-import { login } from "./routes/login";
+import { createUser } from "@routes/createUser";
+import { login } from "@routes/login";
 
 const server = fastify({ logger: true });
 

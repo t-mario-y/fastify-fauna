@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest, RouteOptions } from "fastify";
 import faunadb from "faunadb";
-import { createFaunadbClient } from "../faunadbClientFactory";
-import { MyFaunaError } from "../../__errors/MyFaunaHTTPError";
-import createUserRequestBody from "../schemas/createUserRequestBody.json";
+import { createFaunadbClient } from "@/faunadbClientFactory";
+import { MyFaunaError } from "@__errors/MyFaunaHTTPError";
+import createUserRequestBody from "@schemas/createUserRequestBody.json";
 const { Create, Collection } = faunadb.query;
 
 export const createUser: RouteOptions = {
