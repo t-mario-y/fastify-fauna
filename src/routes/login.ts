@@ -1,8 +1,8 @@
 import { FastifyReply, RouteOptions } from "fastify";
 import faunadb from "faunadb";
 import { createFaunadbClient } from "../faunadbClientFactory";
-import { FaunaQueryResult } from "../types/FaunaQueryResult";
-import { MyFaunaError } from "../__errors/MyFaunaHTTPError";
+import { FaunaQueryResult } from "../../types/FaunaQueryResult";
+import { MyFaunaError } from "../../__errors/MyFaunaHTTPError";
 
 const { Login, Match, Index } = faunadb.query;
 

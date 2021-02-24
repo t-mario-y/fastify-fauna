@@ -6,7 +6,7 @@
     "node": ">=12.13.1"
   },
   "scripts": {
-    "start": "node -r dotenv/config ./dist/index.js",
+    "start": "node -r dotenv/config ./dist/src/server.js",
     "build": "tsc -p ./tsconfig.json",
     "dev": "nodemon | pino-pretty",
     "lint": "npm-run-all --serial lint:*",
@@ -18,7 +18,7 @@
   "nodemonConfig": {
     "watch": "**/*",
     "ext": "ts",
-    "exec": "ts-node -r dotenv/config ./index.ts"
+    "exec": "ts-node -r dotenv/config ./src/server.ts"
   },
   "repository": {
     "type": "git",
