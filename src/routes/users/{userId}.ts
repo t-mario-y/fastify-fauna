@@ -4,7 +4,7 @@ import { GetUserRequestParams as GetUserRequestParamsInterface } from "types/Get
 import { createFaunadbClient } from "@/faunadbClientFactory";
 import { Resource } from "fastify-autoroutes";
 import { MyFaunaError } from "@/__errors/MyFaunaHTTPError";
-import { Collection, Get, Ref } from "faunadb";
+import { Collection, Delete, Get, Ref } from "faunadb";
 
 export default (): Resource =>
   <Resource>{
@@ -24,6 +24,26 @@ export default (): Resource =>
         try {
           const result = await client.query(
             Get(Ref(Collection("Users"), userId))
+          );
+          reply.send(result);
+        } catch (error) {
+          throw new MyFaunaError(error);
+        }
+      },
+    },
+    delete: {
+      config: {
+        isPrivate: true,
+      },
+      handler: async (
+        request: FastifyRequest<{ Params: GetUserRequestParamsInterface }>,
+        reply: FastifyReply
+      ): Promise<void> => {
+        const userId = request.params.userId;
+        const client = createFaunadbClient();
+        try {
+          const result = await client.query(
+            Delete(Ref(Collection("Users"), userId))
           );
           reply.send(result);
         } catch (error) {
