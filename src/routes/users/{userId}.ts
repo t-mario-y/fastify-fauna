@@ -9,9 +9,6 @@ import { Collection, Delete, Get, Ref } from "faunadb";
 export default (): Resource =>
   <Resource>{
     get: {
-      config: {
-        isPrivate: true,
-      },
       schema: {
         params: GetUserRequestParams,
       },
@@ -32,9 +29,6 @@ export default (): Resource =>
       },
     },
     delete: {
-      config: {
-        isPrivate: true,
-      },
       handler: async (
         request: FastifyRequest<{ Params: GetUserRequestParamsInterface }>,
         reply: FastifyReply
