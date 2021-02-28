@@ -4,7 +4,7 @@
 
 ## Required versions
 
-- Node.js 12.13.1 or later
+- Node.js 14.15.5
 - nodemon 2.0.7 or later
 
 ```shell script
