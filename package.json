@@ -9,6 +9,7 @@
     "start": "node -r dotenv/config ./dist/index.js",
     "clean": "rimraf ./dist",
     "generate": "ncc build ./src/server.ts --out ./dist --minify",
+    "compile-schemas": "json2ts --input ./src/schemas --output ./src/types",
     "build": "npm-run-all --serial clean generate",
     "dev": "nodemon | pino-pretty",
     "lint": "npm-run-all --parallel lint:*",
@@ -39,6 +40,7 @@
     "@typescript-eslint/parser": "^4.15.1",
     "@vercel/ncc": "^0.27.0",
     "eslint": "^7.20.0",
+    "json-schema-to-typescript": "^10.1.3",
     "npm-run-all": "^4.1.5",
     "pino-pretty": "^4.5.0",
     "prettier": "^2.2.1",
@@ -50,6 +52,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "fastify": "^3.12.0",
+    "fastify-autoroutes": "^1.0.24",
     "faunadb": "^4.1.0"
   }
 }

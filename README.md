@@ -23,3 +23,20 @@ npm run build
 # run
 npm run start
 ```
+
+## JSON Schemaを追加する
+
+`json2ts`により、型定義ファイルを生成する。
+
+```shell script
+touch schemas/NewSchema.json
+
+npm run compile-schemas
+```
+
+ソースコードで必要に応じてインポートする。
+
+```typescript
+import NewSchema from "@schemas/NewSchema.json";
+import { NewSchema as NewSchemaInterface } from "types/NewSchema";
+```

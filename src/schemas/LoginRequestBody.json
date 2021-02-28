@@ -1,0 +1,12 @@
+{
+  "title": "LoginRequestBody",
+  "type": "object",
+  "properties": {
+    "username": { "type": "string" },
+    "password": {
+      "type": "string",
+      "minLength": 10
+    }
+  },
+  "required": ["username", "password"]
+}

@@ -1,12 +1,11 @@
 import fastify from "fastify";
-import { createUser } from "@routes/createUser";
-import { login } from "@routes/login";
+import AutoRoutes from "fastify-autoroutes";
 
 const server = fastify({ logger: true });
 
-server.route(createUser);
-
-server.route(login);
+server.register(AutoRoutes, {
+  dir: "./routes",
+});
 
 server.listen(3000, (err, address) => {
   if (err) {
