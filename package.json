@@ -7,9 +7,11 @@
   },
   "scripts": {
     "start": "node -r dotenv/config ./dist/index.js",
-    "build": "ncc build ./src/server.ts --out ./dist --minify",
+    "clean": "rimraf ./dist",
+    "generate": "ncc build ./src/server.ts --out ./dist --minify",
+    "build": "npm-run-all --serial clean generate",
     "dev": "nodemon | pino-pretty",
-    "lint": "npm-run-all --serial lint:*",
+    "lint": "npm-run-all --parallel lint:*",
     "lint:prettier": "prettier --check .",
     "lint:eslint": "eslint .",
     "lint:tsc": "tsc --noEmit",
@@ -40,6 +42,7 @@
     "npm-run-all": "^4.1.5",
     "pino-pretty": "^4.5.0",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.1.5"
