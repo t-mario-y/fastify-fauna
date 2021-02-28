@@ -6,9 +6,9 @@
     "node": "=14.15.5"
   },
   "scripts": {
-    "start": "node -r dotenv/config ./dist/index.js",
+    "start": "node -r dotenv/config ./dist/server.js",
     "clean": "rimraf ./dist",
-    "generate": "ncc build ./src/server.ts --out ./dist --minify",
+    "generate": "tsc && tsc-alias",
     "compile-schemas": "json2ts --input ./src/schemas --output ./src/types",
     "build": "npm-run-all --serial clean generate",
     "dev": "nodemon | pino-pretty",
@@ -46,6 +46,7 @@
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
+    "tsc-alias": "^1.2.6",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.1.5"
   },
