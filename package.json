@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": ">=12.13.1"
+    "node": "=14.15.5"
   },
   "scripts": {
     "start": "node -r dotenv/config ./dist/index.js",
