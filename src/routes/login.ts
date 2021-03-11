@@ -1,11 +1,11 @@
 import { createFaunadbClient } from "@/faunadbClientFactory";
-import LoginRequestBody from "@schemas/LoginRequestBody.json";
+import { LoginRequestBody } from "@/types/LoginRequestBody";
+import LoginRequestBodySchema from "@schemas/LoginRequestBody.json";
 import { MyFaunaError } from "@__errors/MyFaunaHTTPError";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { Resource } from "fastify-autoroutes";
 import faunadb from "faunadb";
 import { FaunaQueryResult } from "types/FaunaQueryResult";
-import { LoginRequestBody as LoginRequestBodyInterface } from "types/LoginRequestBody";
 
 const { Login, Match, Index } = faunadb.query;
 
@@ -13,10 +13,10 @@ export default (): Resource =>
   <Resource>{
     post: {
       schema: {
-        body: LoginRequestBody,
+        body: LoginRequestBodySchema,
       },
       handler: async (
-        request: FastifyRequest<{ Body: LoginRequestBodyInterface }>,
+        request: FastifyRequest<{ Body: LoginRequestBody }>,
         reply: FastifyReply
       ): Promise<void> => {
         const client = createFaunadbClient();

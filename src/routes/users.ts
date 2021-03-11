@@ -1,7 +1,7 @@
 import { createFaunadbClient } from "@/faunadbClientFactory";
+import { CreateUserRequestBody } from "@/types/CreateUserRequestBody";
 import { MyFaunaError } from "@/__errors/MyFaunaHTTPError";
-import CreateUserRequestBody from "@schemas/CreateUserRequestBody.json";
-import { CreateUserRequestBody as CreateUserRequestBodyInterface } from "types/CreateUserRequestBody";
+import CreateUserRequestBodySchema from "@schemas/CreateUserRequestBody.json";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { Resource } from "fastify-autoroutes";
 import { Collection, Create } from "faunadb";
@@ -10,10 +10,10 @@ export default (): Resource =>
   <Resource>{
     post: {
       schema: {
-        body: CreateUserRequestBody,
+        body: CreateUserRequestBodySchema,
       },
       handler: async (
-        request: FastifyRequest<{ Body: CreateUserRequestBodyInterface }>,
+        request: FastifyRequest<{ Body: CreateUserRequestBody }>,
         reply: FastifyReply
       ): Promise<void> => {
         const client = createFaunadbClient();

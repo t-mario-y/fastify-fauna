@@ -1,19 +1,19 @@
-import { FastifyReply, FastifyRequest } from "fastify";
-import GetUserRequestParams from "@schemas/GetUserRequestParams.json";
-import { GetUserRequestParams as GetUserRequestParamsInterface } from "types/GetUserRequestParams";
 import { createFaunadbClient } from "@/faunadbClientFactory";
-import { Resource } from "fastify-autoroutes";
+import { GetUserRequestParams } from "@/types/GetUserRequestParams";
 import { MyFaunaError } from "@/__errors/MyFaunaHTTPError";
+import GetUserRequestParamsSchema from "@schemas/GetUserRequestParams.json";
+import { FastifyReply, FastifyRequest } from "fastify";
+import { Resource } from "fastify-autoroutes";
 import { Collection, Delete, Get, Ref } from "faunadb";
 
 export default (): Resource =>
   <Resource>{
     get: {
       schema: {
-        params: GetUserRequestParams,
+        params: GetUserRequestParamsSchema,
       },
       handler: async (
-        request: FastifyRequest<{ Params: GetUserRequestParamsInterface }>,
+        request: FastifyRequest<{ Params: GetUserRequestParams }>,
         reply: FastifyReply
       ): Promise<void> => {
         const userId = request.params.userId;
@@ -30,7 +30,7 @@ export default (): Resource =>
     },
     delete: {
       handler: async (
-        request: FastifyRequest<{ Params: GetUserRequestParamsInterface }>,
+        request: FastifyRequest<{ Params: GetUserRequestParams }>,
         reply: FastifyReply
       ): Promise<void> => {
         const userId = request.params.userId;

@@ -37,6 +37,6 @@ npm run compile-schemas
 ソースコードで必要に応じてインポートする。
 
 ```typescript
-import NewSchema from "@schemas/NewSchema.json";
-import { NewSchema as NewSchemaInterface } from "types/NewSchema";
+import NewTypeSchema from "@schemas/NewType.json";
+import { NewType } from "types/NewType";
 ```
